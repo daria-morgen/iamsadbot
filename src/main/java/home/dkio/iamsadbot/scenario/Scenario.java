@@ -1,6 +1,7 @@
 package home.dkio.iamsadbot.scenario;
 
 
+import home.dkio.iamsadbot.service.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import home.dkio.iamsadbot.utils.ScenarioTypes;
 import lombok.NonNull;
@@ -17,6 +18,7 @@ public final class Scenario {
             case EXCELLENT:
                 return SendMessage.builder().text(DialogTypes.EXCELLENT_FOR_YOU)
                         .chatId(String.valueOf(tmId))
+                        .replyMarkup(InlineKeyboardButtonService.getYesNoMarkup())
                         .build();
             case GOOD:
                 return SendMessage.builder().text(DialogTypes.GOOD_FOR_YOU)
@@ -30,6 +32,12 @@ public final class Scenario {
                 return SendMessage.builder().text(DialogTypes.BAD_FOR_YOU)
                         .chatId(String.valueOf(tmId))
                         .build();
+            case SUPPORT:
+                return SendMessage.builder().text(DialogTypes.THANK_YOU)
+                        .chatId(String.valueOf(tmId))
+                        .build();
+            case NOTSUPPORT:
+                return null;
             default:
                 return null;
         }

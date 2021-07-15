@@ -15,6 +15,10 @@ public final class ScenarioMapping {
 
         if (BAD.getName().equals(mood)) return ScenarioTypes.BAD;
 
+        if (mood.equals(DialogTypes.YES)) return ScenarioTypes.SUPPORT;
+
+        if (mood.equals(DialogTypes.NO)) return ScenarioTypes.NOTSUPPORT;
+
         throw new IllegalArgumentException("Not in MOODS: " + mood);
     }
 }

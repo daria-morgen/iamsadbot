@@ -4,6 +4,8 @@ public enum ScenarioTypes {
     GOOD,
     EXCELLENT,
     NORMAL,
-    BAD;
+    BAD,
+    SUPPORT,
+    NOTSUPPORT
 
 }
