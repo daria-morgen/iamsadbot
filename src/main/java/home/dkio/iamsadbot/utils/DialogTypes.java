@@ -6,6 +6,8 @@ public final class DialogTypes {
 
     public static final String NO = "Нет";
 
+    public static final String SUPPORT = "Поддержать";
+
     public static final String GREETING = "Привет, ";
 
     public static final String HOW_ARE_YOU = ", как твое настроение сегодня?";

@@ -47,7 +47,7 @@ public class InlineKeyboardButtonService {
 
         InlineKeyboardButton yesButton = InlineKeyboardButton.builder()
                 .text(DialogTypes.YES)
-                .callbackData(DialogTypes.YES)
+                .callbackData(DialogTypes.SUPPORT)
                 .build();
 
         InlineKeyboardButton noButton = InlineKeyboardButton.builder()
