@@ -1,8 +1,11 @@
 package home.dkio.iamsadbot.config;
 
 import home.dkio.iamsadbot.bot.IAmSadBot;
+import home.dkio.iamsadbot.domain.Moods;
+import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.MessageService;
 import home.dkio.iamsadbot.service.MoodService;
+import home.dkio.iamsadbot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +25,8 @@ public class AppConfig {
 
     @Autowired
     private MoodService moodService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private MessageService messageService;
@@ -35,4 +40,13 @@ public class AppConfig {
             e.printStackTrace();
         }
     }
+
+    @Bean
+    public void generateDefaultUsers() {
+        userService.saveUser(new User(-999991L, "picka4uh", moodService.getMoodByName(Moods.BAD.getName())));
+        userService.saveUser(new User(-999444L, "polzen", moodService.getMoodByName(Moods.BAD.getName())));
+        userService.saveUser(new User(-333399L, "demurik", moodService.getMoodByName(Moods.BAD.getName())));
+        userService.saveUser(new User(-999333L, "top1kana", moodService.getMoodByName(Moods.BAD.getName())));
+    }
+
 }

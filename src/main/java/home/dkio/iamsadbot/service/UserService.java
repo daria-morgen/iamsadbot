@@ -5,6 +5,10 @@ import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class UserService {
 
@@ -44,5 +48,21 @@ public class UserService {
 
     public Iterable<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public static List<User> getFourRandomUser(Set<User> users) {
+        List<User> randomUsers = new ArrayList();
+        List<User> allUsers = new ArrayList(users);
+        while (randomUsers.size() < 4) {
+            if (allUsers.size() == 4) {
+                randomUsers.addAll(allUsers);
+            }
+            int randomWithMathRandom = 0;
+            randomWithMathRandom = (int) ((Math.random() * (allUsers.size() - 1)) + 1);
+            if (!randomUsers.contains(allUsers.get(randomWithMathRandom)))
+                randomUsers.add(allUsers.get(randomWithMathRandom));
+
+        }
+        return randomUsers;
     }
 }

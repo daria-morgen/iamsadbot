@@ -1,22 +1,20 @@
 package home.dkio.iamsadbot.service;
 
 
-import home.dkio.iamsadbot.service.InlineKeyboardButtonService;
-import home.dkio.iamsadbot.service.MoodService;
-import home.dkio.iamsadbot.service.UserService;
+import home.dkio.iamsadbot.domain.Moods;
+import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioTypes;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
-import static home.dkio.iamsadbot.utils.DialogTypes.GREETING;
-import static home.dkio.iamsadbot.utils.DialogTypes.HOW_ARE_YOU;
+import static home.dkio.iamsadbot.utils.DialogTypes.*;
 
 @Service
 @Slf4j
@@ -56,8 +54,16 @@ public final class ScenarioExecutorService {
                         .chatId(String.valueOf(chatId))
                         .build();
             case SUPPORT:
-                return SendMessage.builder().text(DialogTypes.THANK_YOU)
+                Set<User> users = moodService.getMoodByName(Moods.BAD.getName()).getUsers();
+                if (users.size() == 0) {
+                    return SendMessage.builder().text(NO_SAD_USERS)
+                            .chatId(String.valueOf(chatId))
+                            .build();
+                }
+                String test = DialogTypes.THANK_YOU + COUNT_SAD_USERS + users.size() + DOT + SOME_OF_THEM;
+                return SendMessage.builder().text(test)
                         .chatId(String.valueOf(chatId))
+                        .replyMarkup(InlineKeyboardButtonService.getFewUser(users))
                         .build();
             case NOTSUPPORT:
                 return null;
