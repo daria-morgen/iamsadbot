@@ -2,9 +2,9 @@ package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Moods;
 import home.dkio.iamsadbot.domain.User;
-import home.dkio.iamsadbot.domain.WordsOfSupport;
+import home.dkio.iamsadbot.domain.Wishes;
 import home.dkio.iamsadbot.utils.DialogTypes;
-import home.dkio.iamsadbot.utils.Identifiers;
+import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -72,7 +72,7 @@ public class InlineKeyboardButtonService {
         for (User e : fourRandomUser) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData(Identifiers.userName + e.getName())
+                    .callbackData(KeyIdentifiers.userName + e.getName())
                     .build();
 
             allKeyboardButtons.add(button);
@@ -111,10 +111,10 @@ public class InlineKeyboardButtonService {
 
         List<InlineKeyboardButton> allKeyboardButtons = new ArrayList<>();
 
-        for (WordsOfSupport e : WordsOfSupport.values()) {
+        for (Wishes e : Wishes.values()) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData(Identifiers.id + e.getId() + " " + Identifiers.userName + userName)
+                    .callbackData(KeyIdentifiers.id + e.getId() + " " + KeyIdentifiers.userName + userName)
                     .build();
 
             allKeyboardButtons.add(button);

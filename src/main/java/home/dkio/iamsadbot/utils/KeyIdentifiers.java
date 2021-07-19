@@ -1,6 +1,6 @@
 package home.dkio.iamsadbot.utils;
 
-public class Identifiers {
+public class KeyIdentifiers {
 
     public static final String id = "id= ";
     public static final String userName = "userName= ";

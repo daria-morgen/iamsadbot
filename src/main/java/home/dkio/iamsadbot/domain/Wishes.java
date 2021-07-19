@@ -3,7 +3,7 @@ package home.dkio.iamsadbot.domain;
 import lombok.Getter;
 
 @Getter
-public enum WordsOfSupport {
+public enum Wishes {
     DO_NOT_BE_SAD(
             1l, "Не грусти, друг!"
     ),
@@ -27,7 +27,7 @@ public enum WordsOfSupport {
     private String name;
 
 
-    WordsOfSupport(Long id, String name) {
+    Wishes(Long id, String name) {
         this.id = id;
         this.name = name;
     }

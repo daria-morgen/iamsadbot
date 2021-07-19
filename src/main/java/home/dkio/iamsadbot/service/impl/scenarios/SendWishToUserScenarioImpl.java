@@ -3,7 +3,6 @@ package home.dkio.iamsadbot.service.impl.scenarios;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.utils.DialogTypes;
-import home.dkio.iamsadbot.utils.Identifiers;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

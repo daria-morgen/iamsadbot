@@ -3,7 +3,7 @@ package home.dkio.iamsadbot.service.impl;
 import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.repository.UserRepository;
-import home.dkio.iamsadbot.utils.Identifiers;
+import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -72,6 +72,6 @@ public class UserService {
     }
 
     public String getUserNameFromData(String data) {
-        return data.substring(data.indexOf(Identifiers.userName) + Identifiers.userName.length());
+        return data.substring(data.indexOf(KeyIdentifiers.userName) + KeyIdentifiers.userName.length());
     }
 }
