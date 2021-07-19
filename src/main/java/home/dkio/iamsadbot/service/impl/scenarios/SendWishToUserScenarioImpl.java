@@ -23,7 +23,7 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
     public SendMessage getMessage() {
         String data = update.getCallbackQuery().getData();
         String userName = userService.getUserNameFromData(data);
-        String wishId = update.getCallbackQuery().getData().substring(data.indexOf(Identifiers.id) + Identifiers.id.length(), data.indexOf(" "));
+//        String wishId = update.getCallbackQuery().getData().substring(data.indexOf(Identifiers.id) + Identifiers.id.length(), data.indexOf(" "));
 
 
 //        String messageForUser = DialogTypes.USER + update.getCallbackQuery().getFrom().getUserName() + DialogTypes.WISHED_YOU + wish;
