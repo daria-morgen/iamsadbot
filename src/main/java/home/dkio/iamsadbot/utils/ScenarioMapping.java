@@ -19,6 +19,10 @@ public final class ScenarioMapping {
 
         if (mood.equals(DialogTypes.NO)) return ScenarioTypes.NOTSUPPORT;
 
+        if(mood.contains("user_for_support:")) return ScenarioTypes.SUPPORT_USER;
+
+        if(mood.contains("wish =")) return ScenarioTypes.SEND_WISH_TO_USER;
+
         throw new IllegalArgumentException("Not in range: " + mood);
     }
 }

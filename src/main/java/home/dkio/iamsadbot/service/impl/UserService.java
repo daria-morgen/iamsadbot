@@ -1,4 +1,4 @@
-package home.dkio.iamsadbot.service;
+package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.domain.User;
@@ -53,7 +53,11 @@ public class UserService {
     public static List<User> getFourRandomUser(Set<User> users) {
         List<User> randomUsers = new ArrayList();
         List<User> allUsers = new ArrayList(users);
-        while (randomUsers.size() < 4) {
+        int randomUserListSize = 0;
+        if (allUsers.size() >= 4) {
+            randomUserListSize = 4;
+        } else randomUserListSize = 2;
+        while (randomUsers.size() < randomUserListSize) {
             if (allUsers.size() == 4) {
                 randomUsers.addAll(allUsers);
             }
@@ -64,5 +68,9 @@ public class UserService {
 
         }
         return randomUsers;
+    }
+
+    public String getUserNameFromData(String data) {
+        return data.substring(data.indexOf("user = ") + 1);
     }
 }

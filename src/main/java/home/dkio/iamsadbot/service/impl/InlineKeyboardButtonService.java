@@ -1,12 +1,14 @@
-package home.dkio.iamsadbot.service;
+package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Moods;
 import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.domain.WordsOfSupport;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 public class InlineKeyboardButtonService {
@@ -69,7 +71,7 @@ public class InlineKeyboardButtonService {
         for (User e : fourRandomUser) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData(e.getName())
+                    .callbackData("user_for_support: " + e.getName())
                     .build();
 
             allKeyboardButtons.add(button);
@@ -77,17 +79,56 @@ public class InlineKeyboardButtonService {
 
         List<InlineKeyboardButton> keyboardButtonsRow = new ArrayList<>();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        int countButton = 0;
-        for (InlineKeyboardButton e : allKeyboardButtons) {
-            if (countButton == 2) {
-                rowList.add(List.copyOf(keyboardButtonsRow));
-                keyboardButtonsRow = new ArrayList<>();
-                countButton = 0;
+
+        if (allKeyboardButtons.size() <= 4) {
+            for (int i = 0; i < allKeyboardButtons.size(); i++) {
+                InlineKeyboardButton e = allKeyboardButtons.get(i);
+                keyboardButtonsRow.add(e);
+                if (i == 1 || i == 3) {
+                    rowList.add(List.copyOf(keyboardButtonsRow));
+                    keyboardButtonsRow = new ArrayList<>();
+                }
             }
-            keyboardButtonsRow.add(e);
-            countButton++;
+        } else if (allKeyboardButtons.size() > 4) {
+            int countButton = 0;
+            for (InlineKeyboardButton e : allKeyboardButtons) {
+                if (countButton == 2) {
+                    rowList.add(List.copyOf(keyboardButtonsRow));
+                    keyboardButtonsRow = new ArrayList<>();
+                    countButton = 0;
+                }
+                keyboardButtonsRow.add(e);
+                countButton++;
+            }
         }
 
+
+        return InlineKeyboardMarkup.builder().keyboard(rowList).build();
+    }
+
+    public static ReplyKeyboard getWishes(@NotNull String userName) {
+
+        List<InlineKeyboardButton> allKeyboardButtons = new ArrayList<>();
+
+        for (WordsOfSupport e : WordsOfSupport.values()) {
+            InlineKeyboardButton button = InlineKeyboardButton.builder()
+                    .text(e.getName())
+                    .callbackData("wish = " + e.getName() + " user = " + userName)
+                    .build();
+
+            allKeyboardButtons.add(button);
+        }
+
+        List<InlineKeyboardButton> keyboardButtonsRow = new ArrayList<>();
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+
+        for (InlineKeyboardButton e : allKeyboardButtons) {
+
+            keyboardButtonsRow.add(e);
+            rowList.add(List.copyOf(keyboardButtonsRow));
+            keyboardButtonsRow = new ArrayList<>();
+
+        }
         return InlineKeyboardMarkup.builder().keyboard(rowList).build();
     }
 

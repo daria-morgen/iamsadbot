@@ -1,4 +1,4 @@
-package home.dkio.iamsadbot.service;
+package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.domain.Moods;

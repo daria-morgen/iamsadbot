@@ -1,13 +1,16 @@
-package home.dkio.iamsadbot.service;
+package home.dkio.iamsadbot.service.impl;
 
-import home.dkio.iamsadbot.utils.ScenarioMapping;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.List;
+
 @Service
 public class MessageService {
     private ScenarioExecutorService scenarioExecutorService;
+
+    private AbstactScenario abstactScenario;
 
     public MessageService(ScenarioExecutorService scenarioExecutorService) {
         this.scenarioExecutorService = scenarioExecutorService;
@@ -17,8 +20,12 @@ public class MessageService {
         return scenarioExecutorService.execute(update.getMessage().getChatId(), update.getMessage().getFrom().getId(), update.getMessage().getFrom().getUserName());
     }
 
-    public SendMessage getResponseMessage(Update update) {
-        return scenarioExecutorService.execute(update.getCallbackQuery().getMessage().getChatId(), update.getCallbackQuery().getFrom().getId(), ScenarioMapping.mapMoodOnScenario(update.getCallbackQuery().getData()));
+    public AbstactScenario getResponseMessageByScenario(Update update) {
+        abstactScenario = scenarioExecutorService.execute(update);
+        return abstactScenario;
     }
 
+    public List<SendMessage> getSendMessages() {
+        return abstactScenario.getSendMessages();
+    }
 }

@@ -6,6 +6,7 @@ public enum ScenarioTypes {
     NORMAL,
     BAD,
     SUPPORT,
-    NOTSUPPORT
-
+    NOTSUPPORT,
+    SUPPORT_USER,
+    SEND_WISH_TO_USER;
 }

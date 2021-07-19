@@ -28,5 +28,10 @@ public final class DialogTypes {
     public static final String HUMAN = " человека. ";
     public static final String SOME_OF_THEM = "Вот некоторые из них: ";
 
+    public static final String WHAT_DO_YOU_WANT_TO_WISH ="Что вы хотите передать ";
+    public static final String MESSAGE_SEND_TO_USER ="Ваше пожелание отправлено пользователю ";
+    public static final String USER ="Пользователь ";
+    public static final String WISHED_YOU =" отправил вам пожелание: ";
+
 
 }

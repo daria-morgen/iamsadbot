@@ -2,26 +2,26 @@ package home.dkio.iamsadbot.service;
 
 import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.domain.User;
-import home.dkio.iamsadbot.service.impl.UserService;
+import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-class UserServiceTest {
+class InlineKeyboardButtonServiceTest {
 
     @Test
-    void getFourRandomUser() {
+    public void successGetFourUsers(){
         Set users = new HashSet();
         users.add(new User(-1L, "user1", new Mood()));
         users.add(new User(-2L, "user2", new Mood()));
         users.add(new User(-3L, "user3", new Mood()));
-        users.add(new User(-4L, "user4", new Mood()));
-        users.add(new User(-5L, "user5", new Mood()));
+//        users.add(new User(-4L, "user4", new Mood()));
 
-        List fourRandomUser = UserService.getFourRandomUser(users);
-        Assertions.assertEquals(4, fourRandomUser.size());
+        ReplyKeyboard fewUser = InlineKeyboardButtonService.getFewUser(users);
+        Assertions.assertNotNull(fewUser);
     }
+
 }
