@@ -114,7 +114,7 @@ public class InlineKeyboardButtonService {
         for (WordsOfSupport e : WordsOfSupport.values()) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData("wish = " + e.getName())
+                    .callbackData(Identifiers.id + e.getId() + " " + Identifiers.userName + userName)
                     .build();
 
             allKeyboardButtons.add(button);

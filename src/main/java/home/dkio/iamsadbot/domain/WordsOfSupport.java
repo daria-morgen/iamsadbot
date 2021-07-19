@@ -5,28 +5,30 @@ import lombok.Getter;
 @Getter
 public enum WordsOfSupport {
     DO_NOT_BE_SAD(
-            "Не грусти, друг!"
+            1l, "Не грусти, друг!"
     ),
     EVERYTHING_WILL_BE_FINE(
-            "Всё будет хорошо."
+            2l, "Всё будет хорошо."
     ),
     EVERYTHING_WILL_BE_OK(
-            "У тебя всё наладится!"
+            3l, "У тебя всё наладится!"
     ),
     WHITE_STRIPE(
-            "Черная полоса сменится белой."
+            4l, "Черная полоса сменится белой."
     ),
     POWER(
-            "Ты гораздо сильнее чем думаешь."
+            5l, "Ты гораздо сильнее чем думаешь."
     ),
     EVERYTHING_PASSES(
-            "Всё трудности - это временно."
+            6l, "Всё трудности - это временно."
     );
 
+    private Long id;
     private String name;
 
 
-    WordsOfSupport(String name) {
+    WordsOfSupport(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 }

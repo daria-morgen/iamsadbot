@@ -3,6 +3,7 @@ package home.dkio.iamsadbot.service.impl.scenarios;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.utils.DialogTypes;
+import home.dkio.iamsadbot.utils.Identifiers;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -22,7 +23,8 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
     public SendMessage getMessage() {
         String data = update.getCallbackQuery().getData();
         String userName = userService.getUserNameFromData(data);
-        String wish = update.getCallbackQuery().getData().substring(data.indexOf("wish: ") + 1);
+        String wishId = update.getCallbackQuery().getData().substring(data.indexOf(Identifiers.id) + Identifiers.id.length(), data.indexOf(" "));
+
 
 //        String messageForUser = DialogTypes.USER + update.getCallbackQuery().getFrom().getUserName() + DialogTypes.WISHED_YOU + wish;
 
