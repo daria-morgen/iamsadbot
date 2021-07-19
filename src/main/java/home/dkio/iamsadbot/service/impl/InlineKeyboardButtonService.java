@@ -82,11 +82,13 @@ public class InlineKeyboardButtonService {
         List<InlineKeyboardButton> keyboardButtonsRow = new ArrayList<>();
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
+
+
         if (allKeyboardButtons.size() <= 4) {
             for (int i = 0; i < allKeyboardButtons.size(); i++) {
                 InlineKeyboardButton e = allKeyboardButtons.get(i);
                 keyboardButtonsRow.add(e);
-                if (i == 1 || i == 3) {
+                if (i == 1 || i == allKeyboardButtons.size()-1) {
                     rowList.add(List.copyOf(keyboardButtonsRow));
                     keyboardButtonsRow = new ArrayList<>();
                 }

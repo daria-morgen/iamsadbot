@@ -8,7 +8,7 @@ import java.util.List;
 public final class MoodsUtils {
     private static ArrayList<String> strings = new ArrayList<>();
 
-    {
+    static {
         for (Moods value : Moods.values()) {
             strings.add(value.getCode());
         }

@@ -13,11 +13,11 @@ import java.util.Set;
 class InlineKeyboardButtonServiceTest {
 
     @Test
-    public void successGetFourUsers(){
+    public void successGetFourUsers() {
         Set users = new HashSet();
-        users.add(new User(-1L, "user1", new Mood()));
-        users.add(new User(-2L, "user2", new Mood()));
-        users.add(new User(-3L, "user3", new Mood()));
+        users.add(new User(-1L, null, "user1", new Mood()));
+        users.add(new User(-2L, null, "user2", new Mood()));
+        users.add(new User(-3L, null, "user3", new Mood()));
 //        users.add(new User(-4L, "user4", new Mood()));
 
         ReplyKeyboard fewUser = InlineKeyboardButtonService.getFewUser(users);

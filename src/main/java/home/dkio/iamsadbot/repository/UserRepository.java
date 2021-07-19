@@ -14,4 +14,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query("select count(u) from User u where u.tmId = ?1")
     int isUserExist(Long tmId);
 
+    @Query("select u from User u where u.name = ?1")
+    User getUserByName(String userName);
 }

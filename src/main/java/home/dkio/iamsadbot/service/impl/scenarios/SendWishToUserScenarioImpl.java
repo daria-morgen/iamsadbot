@@ -1,5 +1,6 @@
 package home.dkio.iamsadbot.service.impl.scenarios;
 
+import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.service.impl.WishService;
@@ -22,17 +23,17 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
     @Override
     public SendMessage getMessage() {
         String data = update.getCallbackQuery().getData();
-        String userName = userService.getUserNameFromData(data);
+        User recipient = userService.getUserByName(userService.getUserNameFromData(data));
         String wish = wishService.getWishByData(update.getCallbackQuery().getData());
 
+        if (recipient.getTmChatId() != null) {
+            String messageForUser = DialogTypes.USER + update.getCallbackQuery().getFrom().getUserName() + DialogTypes.WISHED_YOU + wish;
+            getSendMessages().add(SendMessage.builder().text(messageForUser)
+                    .chatId(String.valueOf(recipient.getTmChatId()))
+                    .build());
+        }
 
-//        String messageForUser = DialogTypes.USER + update.getCallbackQuery().getFrom().getUserName() + DialogTypes.WISHED_YOU + wish;
-
-//        getSendMessages().add(SendMessage.builder().text(messageForUser)
-//                .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
-//                .build());
-//
-        String message = DialogTypes.MESSAGE_SEND_TO_USER + userName;
+        String message = DialogTypes.MESSAGE_SEND_TO_USER + recipient.getName();
         return SendMessage.builder().text(message)
                 .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
                 .build();

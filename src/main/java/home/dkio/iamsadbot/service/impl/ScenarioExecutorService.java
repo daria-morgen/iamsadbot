@@ -13,6 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import javax.validation.constraints.NotNull;
 
+import java.util.Locale;
+
 import static home.dkio.iamsadbot.utils.DialogTypes.GREETING;
 import static home.dkio.iamsadbot.utils.DialogTypes.HOW_ARE_YOU;
 
@@ -32,18 +34,18 @@ public final class ScenarioExecutorService {
         this.wishService = wishService;
     }
 
-    public SendMessage execute(Long chatId, Long tmId, String userName) {
+    public SendMessage execute(Long tmChatId, Long tmId, String userName) {
 
-        if (userService.isNewUser(tmId,
+        if (userService.isNewUser(tmId, tmChatId,
                 userName)) {
             return SendMessage.builder()
-                    .chatId(String.valueOf(chatId))
+                    .chatId(String.valueOf(tmChatId))
                     .text(GREETING + userName + HOW_ARE_YOU)
                     .replyMarkup(InlineKeyboardButtonService.getMoodsMarkup()).build();
         }
 
         return SendMessage.builder()
-                .chatId(String.valueOf(chatId))
+                .chatId(String.valueOf(tmChatId))
                 .text(GREETING + userName + "!").build();
     }
 
@@ -51,7 +53,7 @@ public final class ScenarioExecutorService {
         ScenarioTypes scenarioTypes = ScenarioMapping.mapMoodOnScenario(update.getCallbackQuery().getData());
         @NonNull Long tmId = update.getCallbackQuery().getFrom().getId();
 
-        if (MoodsUtils.getArrayOfCodes().contains(scenarioTypes.name())) {
+        if (MoodsUtils.getArrayOfCodes().contains(scenarioTypes.name().toLowerCase(Locale.ROOT))) {
             userService.updateUserMood(tmId,
                     moodService.getMoodByName(scenarioTypes.name())
             );

@@ -23,6 +23,10 @@ public class UserService {
         return userRepository.getUserByTmId(tmId);
     }
 
+    public User getUserByName(String userName) {
+        return userRepository.getUserByName(userName);
+    }
+
     public void saveUser(User user) {
         userRepository.save(user);
     }
@@ -31,11 +35,11 @@ public class UserService {
         return userRepository.isUserExist(tmId) > 0;
     }
 
-    public boolean isNewUser(Long tmId, String userName) {
+    public boolean isNewUser(Long tmId, Long tmChatId, String userName) {
         if (isUserExist(tmId)) {
             return true;
         } else {
-            User user = new User(tmId, userName, null);
+            User user = new User(tmId, tmChatId, userName, null);
             saveUser(user);
             return false;
         }
@@ -57,10 +61,11 @@ public class UserService {
         int randomUserListSize = 0;
         if (allUsers.size() >= 4) {
             randomUserListSize = 4;
-        } else randomUserListSize = 2;
+        } else randomUserListSize = users.size();
         while (randomUsers.size() < randomUserListSize) {
-            if (allUsers.size() == 4) {
+            if (allUsers.size() == randomUserListSize) {
                 randomUsers.addAll(allUsers);
+                break;
             }
             int randomWithMathRandom = 0;
             randomWithMathRandom = (int) ((Math.random() * (allUsers.size() - 1)) + 1);
