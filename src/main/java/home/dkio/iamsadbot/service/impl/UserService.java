@@ -35,16 +35,6 @@ public class UserService {
         return userRepository.isUserExist(tmId) > 0;
     }
 
-    public boolean isNewUser(Long tmId, Long tmChatId, String userName) {
-        if (isUserExist(tmId)) {
-            return true;
-        } else {
-            User user = new User(tmId, tmChatId, userName, null);
-            saveUser(user);
-            return false;
-        }
-    }
-
     public void updateUserMood(Long tmId, Mood moodByName) {
         User user = getUserByTmId(tmId);
         user.setMood(moodByName);
@@ -78,5 +68,12 @@ public class UserService {
 
     public String getUserNameFromData(String data) {
         return data.substring(data.indexOf(KeyIdentifiers.userName) + KeyIdentifiers.userName.length());
+    }
+
+    public void checkUser(Long tmId, Long tmChatId, String userName) {
+        if (!isUserExist(tmId)) {
+            User user = new User(tmId, tmChatId, userName, null);
+            saveUser(user);
+        }
     }
 }

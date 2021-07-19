@@ -2,7 +2,6 @@ package home.dkio.iamsadbot.service.impl.scenarios;
 
 import home.dkio.iamsadbot.domain.Moods;
 import home.dkio.iamsadbot.domain.User;
-import home.dkio.iamsadbot.service.Scenario;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.MoodService;
@@ -28,7 +27,7 @@ public class SupportScenarioImpl extends AbstactScenario {
 
     @Override
     public SendMessage getMessage() {
-        Set<User> users = moodService.getMoodByName(Moods.BAD.getName()).getUsers();
+        Set<User> users = moodService.getMoodByCode(Moods.BAD.getCode()).getUsers();
         if (users.size() == 0) {
             return SendMessage.builder().text(NO_SAD_USERS)
                     .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))

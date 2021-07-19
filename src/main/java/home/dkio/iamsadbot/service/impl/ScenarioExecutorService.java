@@ -1,6 +1,7 @@
 package home.dkio.iamsadbot.service.impl;
 
 
+import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioMapping;
@@ -12,7 +13,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import javax.validation.constraints.NotNull;
-
 import java.util.Locale;
 
 import static home.dkio.iamsadbot.utils.DialogTypes.GREETING;
@@ -36,27 +36,29 @@ public final class ScenarioExecutorService {
 
     public SendMessage execute(Long tmChatId, Long tmId, String userName) {
 
-        if (userService.isNewUser(tmId, tmChatId,
-                userName)) {
-            return SendMessage.builder()
-                    .chatId(String.valueOf(tmChatId))
-                    .text(GREETING + userName + HOW_ARE_YOU)
-                    .replyMarkup(InlineKeyboardButtonService.getMoodsMarkup()).build();
-        }
+        userService.checkUser(tmId, tmChatId,
+                userName);
 
         return SendMessage.builder()
                 .chatId(String.valueOf(tmChatId))
-                .text(GREETING + userName + "!").build();
+                .text(GREETING + userName + HOW_ARE_YOU)
+                .replyMarkup(InlineKeyboardButtonService.getMoodsMarkup()).build();
+
     }
 
     public AbstactScenario execute(@NotNull Update update) {
         ScenarioTypes scenarioTypes = ScenarioMapping.mapMoodOnScenario(update.getCallbackQuery().getData());
         @NonNull Long tmId = update.getCallbackQuery().getFrom().getId();
 
+        userService.checkUser(tmId, update.getCallbackQuery().getMessage().getChatId(),
+                update.getCallbackQuery().getMessage().getFrom().getUserName());
+
         if (MoodsUtils.getArrayOfCodes().contains(scenarioTypes.name().toLowerCase(Locale.ROOT))) {
+            Mood moodByName = moodService.getMoodByCode(scenarioTypes.name().toLowerCase(Locale.ROOT));
             userService.updateUserMood(tmId,
-                    moodService.getMoodByName(scenarioTypes.name())
+                    moodService.getMoodByCode(scenarioTypes.name().toLowerCase(Locale.ROOT))
             );
+            moodService.updateUserMood(moodByName, userService.getUserByTmId(tmId));
         }
         switch (scenarioTypes) {
             case EXCELLENT:
@@ -74,7 +76,7 @@ public final class ScenarioExecutorService {
             case SEND_WISH_TO_USER:
                 return new SendWishToUserScenarioImpl(userService, wishService, update);
             case NOTSUPPORT:
-                return null;
+                return new SendWishToUserScenarioImpl(userService, wishService, update);
             default:
                 return null;
         }

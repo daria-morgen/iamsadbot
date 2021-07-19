@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MoodRepository extends CrudRepository<Mood, Long> {
 
-    @Query("select m from Mood m where m.name = ?1")
+    @Query("select m from Mood m where m.code = ?1")
     Mood getMoodIdByName(String moodName);
 
 

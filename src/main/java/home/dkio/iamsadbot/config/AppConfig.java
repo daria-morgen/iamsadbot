@@ -47,7 +47,7 @@ public class AppConfig {
 
     @Bean
     public void generateDefaultUsers() {
-        userService.saveUser(new User(-999991L, -8888888l, "picka4uh", moodService.getMoodByName(Moods.BAD.getName())));
+        userService.saveUser(new User(-999991L, -8888888l, "picka4uh", moodService.getMoodByCode(Moods.BAD.getName())));
 //        userService.saveUser(new User(-999444L, -88888188l, "polzen", moodService.getMoodByName(Moods.BAD.getName())));
 //        userService.saveUser(new User(-333399L, -88888388l, "demurik", moodService.getMoodByName(Moods.BAD.getName())));
 //        userService.saveUser(new User(-999333L, "top1kana", moodService.getMoodByName(Moods.BAD.getName())));

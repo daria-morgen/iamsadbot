@@ -2,9 +2,11 @@ package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Mood;
 import home.dkio.iamsadbot.domain.Moods;
+import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.repository.MoodRepository;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,11 +35,16 @@ public class MoodService {
         return moodRepository.findAll();
     }
 
-    public Mood getMoodByName(String data) {
+    public Mood getMoodByCode(String data) {
         return moodRepository.getMoodIdByName(data);
     }
 
     public void save(Mood moodByName) {
         moodRepository.save(moodByName);
+    }
+
+    public void updateUserMood(@NotNull Mood moodByName,@NotNull User userByTmId) {
+        moodByName.getUsers().add(userByTmId);
+        save(moodByName);
     }
 }
