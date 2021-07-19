@@ -4,6 +4,7 @@ import home.dkio.iamsadbot.domain.Moods;
 import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.domain.WordsOfSupport;
 import home.dkio.iamsadbot.utils.DialogTypes;
+import home.dkio.iamsadbot.utils.Identifiers;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -71,7 +72,7 @@ public class InlineKeyboardButtonService {
         for (User e : fourRandomUser) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData("user_for_support: " + e.getName())
+                    .callbackData(Identifiers.userName + e.getName())
                     .build();
 
             allKeyboardButtons.add(button);
@@ -113,7 +114,7 @@ public class InlineKeyboardButtonService {
         for (WordsOfSupport e : WordsOfSupport.values()) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
-                    .callbackData("wish = " + e.getName() + " user = " + userName)
+                    .callbackData("wish = " + e.getName())
                     .build();
 
             allKeyboardButtons.add(button);
