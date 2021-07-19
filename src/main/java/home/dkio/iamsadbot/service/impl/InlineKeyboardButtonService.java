@@ -2,6 +2,7 @@ package home.dkio.iamsadbot.service.impl;
 
 import home.dkio.iamsadbot.domain.Moods;
 import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.domain.Wish;
 import home.dkio.iamsadbot.domain.Wishes;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import home.dkio.iamsadbot.utils.KeyIdentifiers;
@@ -107,11 +108,11 @@ public class InlineKeyboardButtonService {
         return InlineKeyboardMarkup.builder().keyboard(rowList).build();
     }
 
-    public static ReplyKeyboard getWishes(@NotNull String userName) {
+    public static ReplyKeyboard getWishes(@NotNull String userName, Iterable<Wish> allWishes) {
 
         List<InlineKeyboardButton> allKeyboardButtons = new ArrayList<>();
 
-        for (Wishes e : Wishes.values()) {
+        for (Wish e : allWishes) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
                     .text(e.getName())
                     .callbackData(KeyIdentifiers.id + e.getId() + " " + KeyIdentifiers.userName + userName)

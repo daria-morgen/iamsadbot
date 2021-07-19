@@ -3,6 +3,7 @@ package home.dkio.iamsadbot.service.impl;
 import home.dkio.iamsadbot.domain.Wish;
 import home.dkio.iamsadbot.domain.Wishes;
 import home.dkio.iamsadbot.repository.WishRepository;
+import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,5 +26,14 @@ public class WishService {
             });
             wishRepository.saveAll(wishList);
         }
+    }
+
+    public Iterable<Wish> getAllWishes() {
+        return wishRepository.findAll();
+    }
+
+    public String getWishByData(String data) {
+        Long wishId = Long.valueOf(data.substring(data.indexOf(KeyIdentifiers.id) + KeyIdentifiers.id.length(), KeyIdentifiers.id.length() + 1));
+        return wishRepository.findById(wishId).get().getName();
     }
 }

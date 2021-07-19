@@ -1,7 +1,6 @@
 package home.dkio.iamsadbot.service.impl;
 
 
-import home.dkio.iamsadbot.service.Scenario;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioMapping;
@@ -25,9 +24,12 @@ public final class ScenarioExecutorService {
 
     private final MoodService moodService;
 
-    public ScenarioExecutorService(UserService userService, MoodService moodService) {
+    private final WishService wishService;
+
+    public ScenarioExecutorService(UserService userService, MoodService moodService, WishService wishService) {
         this.userService = userService;
         this.moodService = moodService;
+        this.wishService = wishService;
     }
 
     public SendMessage execute(Long chatId, Long tmId, String userName) {
@@ -66,9 +68,9 @@ public final class ScenarioExecutorService {
             case SUPPORT:
                 return new SupportScenarioImpl(moodService, update);
             case SUPPORT_USER:
-                return new SupportUserScenarioImpl(userService, update);
+                return new SupportUserScenarioImpl(userService, wishService, update);
             case SEND_WISH_TO_USER:
-                return new SendWishToUserScenarioImpl(userService, update);
+                return new SendWishToUserScenarioImpl(userService, wishService, update);
             case NOTSUPPORT:
                 return null;
             default:

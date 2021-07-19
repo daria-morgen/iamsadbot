@@ -6,6 +6,7 @@ import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.MessageService;
 import home.dkio.iamsadbot.service.impl.MoodService;
 import home.dkio.iamsadbot.service.impl.UserService;
+import home.dkio.iamsadbot.service.impl.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +31,9 @@ public class AppConfig {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private WishService wishService;
 
     @Bean
     public void iAmSadBot() {
