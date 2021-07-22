@@ -20,9 +20,9 @@ public class MessageService {
         return scenarioExecutorService.execute(update.getMessage().getChatId(), update.getMessage().getFrom().getId(), update.getMessage().getFrom().getUserName());
     }
 
-    public AbstactScenario getResponseMessageByScenario(Update update) {
+    public SendMessage getResponseMessageByScenario(Update update) {
         abstactScenario = scenarioExecutorService.execute(update);
-        return abstactScenario;
+        return abstactScenario.getMessage();
     }
 
     public List<SendMessage> getSendMessages() {

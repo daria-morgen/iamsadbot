@@ -44,7 +44,7 @@ public class IAmSadBot extends TelegramLongPollingBot {
             }
         } else if (update.hasCallbackQuery()) {
             try {
-                SendMessage message = messageService.getResponseMessageByScenario(update).getMessage();
+                SendMessage message = messageService.getResponseMessageByScenario(update);
                 execute(message);
                 if (messageService.getSendMessages().size() > 0) {
                     for (SendMessage e : messageService.getSendMessages()) {

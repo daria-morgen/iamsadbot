@@ -20,7 +20,7 @@ import static home.dkio.iamsadbot.utils.DialogTypes.HOW_ARE_YOU;
 
 @Service
 @Slf4j
-public final class ScenarioExecutorService {
+public class ScenarioExecutorService {
 
     private final UserService userService;
 
