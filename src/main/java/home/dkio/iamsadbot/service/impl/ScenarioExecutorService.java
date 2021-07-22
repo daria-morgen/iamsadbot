@@ -2,6 +2,7 @@ package home.dkio.iamsadbot.service.impl;
 
 
 import home.dkio.iamsadbot.domain.Mood;
+import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioMapping;
@@ -54,11 +55,12 @@ public class ScenarioExecutorService {
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
 
         if (MoodsUtils.getArrayOfCodes().contains(scenarioTypes.name().toLowerCase(Locale.ROOT))) {
-            Mood moodByName = moodService.getMoodByCode(scenarioTypes.name().toLowerCase(Locale.ROOT));
+            Mood moodByCode = moodService.getMoodByCode(scenarioTypes.name().toLowerCase(Locale.ROOT));
             userService.updateUserMood(tmId,
-                    moodService.getMoodByCode(scenarioTypes.name().toLowerCase(Locale.ROOT))
+                    moodByCode
             );
-            moodService.updateUserMood(moodByName, userService.getUserByTmId(tmId));
+            User userByTmId = userService.getUserByTmId(tmId);
+            moodService.updateUserMood(moodByCode, userByTmId);
         }
         switch (scenarioTypes) {
             case EXCELLENT:
