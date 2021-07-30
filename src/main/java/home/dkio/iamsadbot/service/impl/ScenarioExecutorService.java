@@ -78,7 +78,7 @@ public class ScenarioExecutorService {
             case SEND_WISH_TO_USER:
                 return new SendWishToUserScenarioImpl(userService, wishService, update);
             case NOTSUPPORT:
-                return new SendWishToUserScenarioImpl(userService, wishService, update);
+                return new NotSupportScenarioImpl(update);
             default:
                 return null;
         }
