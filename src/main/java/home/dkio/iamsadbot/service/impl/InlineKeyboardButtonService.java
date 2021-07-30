@@ -64,7 +64,7 @@ public class InlineKeyboardButtonService {
         return InlineKeyboardMarkup.builder().keyboard(rowList).build();
     }
 
-    public static ReplyKeyboard getFewUser(Set<User> users) {
+    public static InlineKeyboardMarkup getFewUser(Set<User> users) {
 
         List<User> fourRandomUser = UserService.getFourRandomUser(users);
 
@@ -110,7 +110,7 @@ public class InlineKeyboardButtonService {
         return InlineKeyboardMarkup.builder().keyboard(rowList).build();
     }
 
-    public static ReplyKeyboard getWishes(@NotNull String userName, Iterable<Wish> allWishes) {
+    public static InlineKeyboardMarkup getWishes(@NotNull String userName, Iterable<Wish> allWishes) {
 
         List<InlineKeyboardButton> allKeyboardButtons = new ArrayList<>();
 

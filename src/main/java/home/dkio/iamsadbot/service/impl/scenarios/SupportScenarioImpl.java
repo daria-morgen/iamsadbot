@@ -6,7 +6,7 @@ import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.MoodService;
 import home.dkio.iamsadbot.utils.DialogTypes;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Set;
@@ -26,16 +26,21 @@ public class SupportScenarioImpl extends AbstactScenario {
     }
 
     @Override
-    public SendMessage getMessage() {
+    public EditMessageText getMessage() {
         Set<User> users = moodService.getMoodByCode(Moods.BAD.getCode()).getUsers();
         if (users.size() == 0) {
-            return SendMessage.builder().text(NO_SAD_USERS)
+            return EditMessageText.builder()
                     .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
+                    .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                    .text(NO_SAD_USERS)
                     .build();
         }
         String text = DialogTypes.THANK_YOU + COUNT_SAD_USERS + users.size() + DOT + SOME_OF_THEM;
-        return SendMessage.builder().text(text)
+
+        return EditMessageText.builder()
                 .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
+                .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                .text(text)
                 .replyMarkup(InlineKeyboardButtonService.getFewUser(users))
                 .build();
     }

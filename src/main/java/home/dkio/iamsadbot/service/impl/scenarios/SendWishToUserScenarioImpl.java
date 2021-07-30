@@ -6,6 +6,7 @@ import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.service.impl.WishService;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class SendWishToUserScenarioImpl extends AbstactScenario {
@@ -21,7 +22,7 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
     }
 
     @Override
-    public SendMessage getMessage() {
+    public EditMessageText getMessage() {
         String data = update.getCallbackQuery().getData();
         User recipient = userService.getUserByName(userService.getUserNameFromData(data));
         String wish = wishService.getWishByData(update.getCallbackQuery().getData());
@@ -34,8 +35,10 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
         }
 
         String message = DialogTypes.MESSAGE_SEND_TO_USER + recipient.getName();
-        return SendMessage.builder().text(message)
+        return EditMessageText.builder()
                 .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
+                .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                .text(message)
                 .build();
     }
 }

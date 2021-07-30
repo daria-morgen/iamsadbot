@@ -5,10 +5,10 @@ import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.service.impl.WishService;
 import home.dkio.iamsadbot.utils.DialogTypes;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class SupportUserScenarioImpl  extends AbstactScenario {
+public class SupportUserScenarioImpl extends AbstactScenario {
 
     private final UserService userService;
 
@@ -23,12 +23,14 @@ public class SupportUserScenarioImpl  extends AbstactScenario {
     }
 
     @Override
-    public SendMessage getMessage() {
+    public EditMessageText getMessage() {
         String userName = userService.getUserNameFromData(update.getCallbackQuery().getData());
         String message = DialogTypes.WHAT_DO_YOU_WANT_TO_WISH + userName;
-        return SendMessage.builder().text(message)
+        return EditMessageText.builder()
                 .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
-                .replyMarkup(InlineKeyboardButtonService.getWishes(userName,wishService.getAllWishes()))
+                .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                .text(message)
+                .replyMarkup(InlineKeyboardButtonService.getWishes(userName, wishService.getAllWishes()))
                 .build();
     }
 }

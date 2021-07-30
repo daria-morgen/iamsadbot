@@ -4,6 +4,7 @@ import home.dkio.iamsadbot.service.impl.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -44,8 +45,7 @@ public class IAmSadBot extends TelegramLongPollingBot {
             }
         } else if (update.hasCallbackQuery()) {
             try {
-                SendMessage message = messageService.getResponseMessageByScenario(update);
-                execute(message);
+                execute(messageService.getResponseMessageByScenario(update));
                 if (messageService.getSendMessages().size() > 0) {
                     for (SendMessage e : messageService.getSendMessages()) {
                         execute(e);
