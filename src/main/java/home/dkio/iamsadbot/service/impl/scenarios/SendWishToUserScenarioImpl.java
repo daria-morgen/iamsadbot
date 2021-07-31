@@ -2,6 +2,7 @@ package home.dkio.iamsadbot.service.impl.scenarios;
 
 import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
+import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.service.impl.WishService;
 import home.dkio.iamsadbot.utils.DialogTypes;
@@ -34,10 +35,11 @@ public class SendWishToUserScenarioImpl extends AbstactScenario {
                     .build());
         }
 
-        String message = DialogTypes.MESSAGE_SEND_TO_USER + recipient.getName();
+        String message = DialogTypes.MESSAGE_SEND_TO_USER + recipient.getName()+DialogTypes.DOT+DialogTypes.WHAT_DO_YOU_WANT_TO_WISH_AGAIN;
         return EditMessageText.builder()
                 .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))
                 .messageId(update.getCallbackQuery().getMessage().getMessageId())
+                .replyMarkup(InlineKeyboardButtonService.getYesNoMarkup())
                 .text(message)
                 .build();
     }

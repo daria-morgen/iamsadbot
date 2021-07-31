@@ -32,6 +32,7 @@ public final class DialogTypes {
 
     public static final String WHAT_DO_YOU_WANT_TO_WISH ="Что вы хотите передать ";
     public static final String MESSAGE_SEND_TO_USER ="Ваше пожелание отправлено пользователю ";
+    public static final String WHAT_DO_YOU_WANT_TO_WISH_AGAIN =" Хотите отправить еще пожеланий?";
     public static final String USER ="Пользователь ";
     public static final String WISHED_YOU =" отправил вам пожелание: ";
 
