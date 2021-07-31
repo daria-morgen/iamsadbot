@@ -5,10 +5,12 @@ import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.MoodService;
+import home.dkio.iamsadbot.service.impl.UserService;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.List;
 import java.util.Set;
 
 import static home.dkio.iamsadbot.utils.DialogTypes.*;
@@ -17,17 +19,20 @@ public class SupportScenarioImpl extends AbstactScenario {
 
     MoodService moodService;
 
+    UserService userService;
+
     private final Update update;
 
-    public SupportScenarioImpl(MoodService moodService, Update update) {
+    public SupportScenarioImpl(MoodService moodService, UserService userService, Update update) {
         this.moodService = moodService;
+        this.userService = userService;
         this.update = update;
 
     }
 
     @Override
     public EditMessageText getMessage() {
-        Set<User> users = moodService.getMoodByCode(Moods.BAD.getCode()).getUsers();
+        Set<User> users = userService.getUsersByMood(moodService.getMoodByCode(Moods.BAD.getCode()));
         if (users.size() == 0) {
             return EditMessageText.builder()
                     .chatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()))

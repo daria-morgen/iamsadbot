@@ -68,7 +68,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(Moods.BAD.getName().toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 
@@ -88,7 +88,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(Moods.EXCELLENT.getName().toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 
@@ -107,7 +107,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(Moods.GOOD.getName().toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 
@@ -126,7 +126,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(Moods.NORMAL.getName().toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 
@@ -146,7 +146,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(DialogTypes.SUPPORT.toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 
@@ -166,7 +166,7 @@ class ScenarioExecutorServiceTest {
         when(moodService.getMoodByCode(DialogTypes.NO.toLowerCase(Locale.ROOT))).thenReturn(mood);
         doNothing().when(userService).updateUserMood(update.getCallbackQuery().getFrom().getId(), mood);
         when(userService.getUserByTmId(update.getCallbackQuery().getFrom().getId())).thenReturn(user);
-        doNothing().when(moodService).updateUserMood(any(), any());
+        
 
         AbstactScenario execute = scenarioExecutorService.execute(update);
 

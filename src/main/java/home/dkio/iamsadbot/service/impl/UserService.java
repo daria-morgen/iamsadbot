@@ -76,4 +76,8 @@ public class UserService {
             saveUser(user);
         }
     }
+
+    public Set<User> getUsersByMood(Mood mood){
+        return userRepository.getUsersByMood(mood);
+    };
 }

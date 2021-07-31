@@ -26,13 +26,9 @@ public class Mood implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "mood", cascade = CascadeType.ALL)
-    private Set<User> users;
-
     public Mood(String code, String name, Set<User> users) {
         this.code = code;
         this.name = name;
-        this.users = users;
     }
 
 }

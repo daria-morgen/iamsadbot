@@ -2,7 +2,6 @@ package home.dkio.iamsadbot.service.impl;
 
 
 import home.dkio.iamsadbot.domain.Mood;
-import home.dkio.iamsadbot.domain.User;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioMapping;
@@ -59,8 +58,6 @@ public class ScenarioExecutorService {
             userService.updateUserMood(tmId,
                     moodByCode
             );
-            User userByTmId = userService.getUserByTmId(tmId);
-            moodService.updateUserMood(moodByCode, userByTmId);
         }
         switch (scenarioTypes) {
             case EXCELLENT:
@@ -72,7 +69,7 @@ public class ScenarioExecutorService {
             case BAD:
                 return new BabScenarioImpl(update);
             case SUPPORT:
-                return new SupportScenarioImpl(moodService, update);
+                return new SupportScenarioImpl(moodService, userService, update);
             case SUPPORT_USER:
                 return new SupportUserScenarioImpl(userService, wishService, update);
             case SEND_WISH_TO_USER:

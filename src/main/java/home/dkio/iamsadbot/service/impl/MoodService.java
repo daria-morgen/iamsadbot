@@ -42,9 +42,4 @@ public class MoodService {
     public void save(Mood moodByName) {
         moodRepository.save(moodByName);
     }
-
-    public void updateUserMood(@NotNull Mood moodByName,@NotNull User userByTmId) {
-        moodByName.getUsers().add(userByTmId);
-        save(moodByName);
-    }
 }
