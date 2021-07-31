@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service.impl;
 
-import home.dkio.iamsadbot.domain.Mood;
-import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.entity.Mood;
+import home.dkio.iamsadbot.entity.User;
 import home.dkio.iamsadbot.repository.UserRepository;
 import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.springframework.stereotype.Service;

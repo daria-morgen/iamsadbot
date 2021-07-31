@@ -2,7 +2,7 @@ package home.dkio.iamsadbot.utils;
 
 import javax.validation.constraints.NotNull;
 
-import static home.dkio.iamsadbot.domain.Moods.*;
+import static home.dkio.iamsadbot.entity.Moods.*;
 
 public final class ScenarioMapping {
 

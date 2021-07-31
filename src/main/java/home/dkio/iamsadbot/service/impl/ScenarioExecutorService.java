@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service.impl;
 
 
-import home.dkio.iamsadbot.domain.Mood;
+import home.dkio.iamsadbot.entity.Mood;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.MoodsUtils;
 import home.dkio.iamsadbot.utils.ScenarioMapping;

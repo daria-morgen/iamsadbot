@@ -1,13 +1,11 @@
 package home.dkio.iamsadbot.service.impl;
 
-import home.dkio.iamsadbot.domain.Moods;
-import home.dkio.iamsadbot.domain.User;
-import home.dkio.iamsadbot.domain.Wish;
-import home.dkio.iamsadbot.domain.Wishes;
+import home.dkio.iamsadbot.entity.Moods;
+import home.dkio.iamsadbot.entity.User;
+import home.dkio.iamsadbot.entity.Wish;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import javax.validation.constraints.NotNull;

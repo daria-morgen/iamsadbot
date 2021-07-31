@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service.impl;
 
-import home.dkio.iamsadbot.domain.Mood;
-import home.dkio.iamsadbot.domain.Moods;
+import home.dkio.iamsadbot.entity.Mood;
+import home.dkio.iamsadbot.entity.Moods;
 import home.dkio.iamsadbot.service.impl.scenarios.*;
 import home.dkio.iamsadbot.utils.DialogTypes;
 import home.dkio.iamsadbot.utils.ScenarioTypes;
@@ -61,7 +61,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(Moods.BAD.getName());
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
@@ -81,7 +81,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(Moods.EXCELLENT.getName());
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
@@ -100,7 +100,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(Moods.GOOD.getName());
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
@@ -119,7 +119,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(Moods.NORMAL.getName());
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
@@ -139,7 +139,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(DialogTypes.SUPPORT);
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());
@@ -159,7 +159,7 @@ class ScenarioExecutorServiceTest {
         update.getCallbackQuery().setData(DialogTypes.NO);
 
         Mood mood = new Mood();
-        home.dkio.iamsadbot.domain.User user = new home.dkio.iamsadbot.domain.User();
+        home.dkio.iamsadbot.entity.User user = new home.dkio.iamsadbot.entity.User();
 
         doNothing().when(userService).checkUser(update.getCallbackQuery().getFrom().getId(), update.getCallbackQuery().getMessage().getChatId(),
                 update.getCallbackQuery().getMessage().getFrom().getUserName());

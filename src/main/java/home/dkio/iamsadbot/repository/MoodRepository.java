@@ -1,6 +1,6 @@
 package home.dkio.iamsadbot.repository;
 
-import home.dkio.iamsadbot.domain.Mood;
+import home.dkio.iamsadbot.entity.Mood;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package home.dkio.iamsadbot.repository;
 
-import home.dkio.iamsadbot.domain.Wish;
+import home.dkio.iamsadbot.entity.Wish;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

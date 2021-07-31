@@ -1,6 +1,6 @@
 package home.dkio.iamsadbot.utils;
 
-import home.dkio.iamsadbot.domain.Moods;
+import home.dkio.iamsadbot.entity.Moods;
 
 import java.util.ArrayList;
 import java.util.List;

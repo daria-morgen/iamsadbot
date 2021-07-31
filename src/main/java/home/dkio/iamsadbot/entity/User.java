@@ -1,4 +1,4 @@
-package home.dkio.iamsadbot.domain;
+package home.dkio.iamsadbot.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

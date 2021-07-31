@@ -1,6 +1,6 @@
 package home.dkio.iamsadbot.service.impl.scenarios;
 
-import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.entity.User;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.UserService;

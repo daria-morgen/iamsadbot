@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service.impl.scenarios;
 
-import home.dkio.iamsadbot.domain.Moods;
-import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.entity.Moods;
+import home.dkio.iamsadbot.entity.User;
 import home.dkio.iamsadbot.service.impl.AbstactScenario;
 import home.dkio.iamsadbot.service.impl.InlineKeyboardButtonService;
 import home.dkio.iamsadbot.service.impl.MoodService;
@@ -10,7 +10,6 @@ import home.dkio.iamsadbot.utils.DialogTypes;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.List;
 import java.util.Set;
 
 import static home.dkio.iamsadbot.utils.DialogTypes.*;

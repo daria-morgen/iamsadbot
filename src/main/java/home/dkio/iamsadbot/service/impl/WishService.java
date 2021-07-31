@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service.impl;
 
-import home.dkio.iamsadbot.domain.Wish;
-import home.dkio.iamsadbot.domain.Wishes;
+import home.dkio.iamsadbot.entity.Wish;
+import home.dkio.iamsadbot.entity.Wishes;
 import home.dkio.iamsadbot.repository.WishRepository;
 import home.dkio.iamsadbot.utils.KeyIdentifiers;
 import org.springframework.stereotype.Service;

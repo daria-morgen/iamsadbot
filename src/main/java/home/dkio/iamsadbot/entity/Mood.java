@@ -1,4 +1,4 @@
-package home.dkio.iamsadbot.domain;
+package home.dkio.iamsadbot.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,16 +14,20 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class Wish implements Serializable {
+public class Mood implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
+    private String code;
+
+    @Column(nullable = false)
     private String name;
 
-    public Wish(String name) {
+    public Mood(String code, String name, Set<User> users) {
+        this.code = code;
         this.name = name;
     }
 

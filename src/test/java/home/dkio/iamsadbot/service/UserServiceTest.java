@@ -1,7 +1,7 @@
 package home.dkio.iamsadbot.service;
 
-import home.dkio.iamsadbot.domain.Mood;
-import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.entity.Mood;
+import home.dkio.iamsadbot.entity.User;
 import home.dkio.iamsadbot.service.impl.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

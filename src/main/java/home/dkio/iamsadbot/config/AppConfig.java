@@ -1,8 +1,8 @@
 package home.dkio.iamsadbot.config;
 
 import home.dkio.iamsadbot.bot.IAmSadBot;
-import home.dkio.iamsadbot.domain.Moods;
-import home.dkio.iamsadbot.domain.User;
+import home.dkio.iamsadbot.entity.Moods;
+import home.dkio.iamsadbot.entity.User;
 import home.dkio.iamsadbot.service.impl.MessageService;
 import home.dkio.iamsadbot.service.impl.MoodService;
 import home.dkio.iamsadbot.service.impl.UserService;
